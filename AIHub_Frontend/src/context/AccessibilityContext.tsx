@@ -1,19 +1,8 @@
 // src/context/AccessibilityContext.tsx
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import type { ReactNode } from "react";
-
-type Theme = "light" | "dark";
-type FontSize = "normal" | "large" | "xlarge";
-
-interface AccessibilityContextType {
-    theme: Theme;
-    fontSize: FontSize;
-    toggleTheme: () => void;
-    increaseFontSize: () => void;
-    resetFontSize: () => void;
-}
-
-const AccessibilityContext = createContext<AccessibilityContextType | null>(null);
+import { AccessibilityContext } from "./accessibilityContext";
+import type { FontSize, Theme } from "./accessibilityContext";
 
 const FONT_SIZES: FontSize[] = ["normal", "large", "xlarge"];
 const FONT_SCALE: Record<FontSize, string> = {
@@ -89,10 +78,4 @@ export function AccessibilityProvider({ children }: { children: ReactNode }) {
             {children}
         </AccessibilityContext.Provider>
     );
-}
-
-export function useAccessibility() {
-    const ctx = useContext(AccessibilityContext);
-    if (!ctx) throw new Error("useAccessibility must be used within AccessibilityProvider");
-    return ctx;
 }

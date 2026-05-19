@@ -1,0 +1,17 @@
+.wrap {
+    padding: 48px 24px;
+    text-align: center;
+    color: var(--color-text, #111111);
+}
+
+.title {
+    margin: 0 0 8px;
+    font-size: calc(28px * var(--font-scale, 1));
+    font-weight: 800;
+}
+
+.message {
+    margin: 0;
+    color: var(--color-text-muted, #555555);
+    font-size: calc(15px * var(--font-scale, 1));
+}

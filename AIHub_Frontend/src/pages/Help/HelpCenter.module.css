@@ -42,6 +42,7 @@
 /* FAQ 목록 */
 .faq { list-style: none; padding: 0; margin: 8px 0 0; display: grid; gap: 8px; }
 .item { border: 1px solid #e5e7eb; border-radius: 12px; background: #fff; }
+.emptyItem { padding: 14px; text-align: center; color: #666; }
 .q {
     width: 100%; padding: 14px; display: flex; align-items: center; justify-content: space-between;
     background: transparent; border: 0; cursor: pointer; font-weight: 700; color: #111;

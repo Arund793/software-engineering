@@ -1,24 +1,20 @@
 // src/components/layout/Header/Header.tsx
+import { Link } from "react-router-dom";
 import s from "./Header.module.css";
-import { useAccessibility } from "@/context/AccessibilityContext";
+import { useAccessibility } from "@/context/useAccessibility";
 
 export default function Header() {
     const { theme, fontSize, toggleTheme, increaseFontSize, resetFontSize } =
         useAccessibility();
 
-    const goHome = (e: React.MouseEvent) => {
-        e.preventDefault();
-        window.location.href = "/";
-    };
-
     return (
         <header className={s.header}>
             <div className={s.inner}>
                 {/* 브랜드 로고 */}
-                <a href="/" className={s.brand} aria-label="AI Hub 홈" onClick={goHome}>
+                <Link to="/" className={s.brand} aria-label="AI Hub 홈">
                     <img className={s.logo} src="/logo.png" alt="AI Hub 로고" />
                     <span className={s.text}>AI Hub</span>
-                </a>
+                </Link>
 
                 {/* 접근성 버튼 그룹 */}
                 <div className={s.controls} aria-label="접근성 컨트롤">

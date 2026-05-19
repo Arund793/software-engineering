@@ -2,7 +2,9 @@ package com.compassai.backend.domain;
 
 import com.compassai.backend.domain.dto.AiToolResponse;
 import org.springframework.data.domain.*;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("/api/tools")
@@ -35,7 +37,8 @@ public class AiToolController {
 
     @GetMapping("/{id}")
     public AiToolResponse get(@PathVariable Long id) {
-        AiTool t = repo.findById(id).orElseThrow();
+        AiTool t = repo.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "AI tool not found"));
         return toDto(t);
     }
 

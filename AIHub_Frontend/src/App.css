@@ -1,7 +1,4 @@
 /* ===== App Layout ===== */
-html, body, #root { height: 100%; }
-
-/* 전체 레이아웃 */
 .app {
     min-height: 100dvh;
     display: flex;
@@ -10,7 +7,6 @@ html, body, #root { height: 100%; }
     transition: background 0.3s;
 }
 
-/* 메인 컨테이너 */
 .container {
     max-width: 1180px;
     margin: 0 auto;
@@ -21,7 +17,6 @@ html, body, #root { height: 100%; }
     flex: 1;
 }
 
-/* 헤더 제외 영역 */
 .main {
     flex: 1;
     display: flex;

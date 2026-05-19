@@ -23,6 +23,13 @@
     box-shadow: 0 16px 34px rgba(15, 23, 42, .12);
     border-color: var(--color-accent, #4361ee);
 }
+.card:focus-visible {
+    outline: 3px solid rgba(67, 97, 238, 0.24);
+    outline-offset: 3px;
+}
+.noLink {
+    cursor: default;
+}
 
 /* =============== 카드 내부 레이아웃 =============== */
 .inner {
@@ -160,7 +167,8 @@
     transition: opacity .16s ease, transform .16s ease, visibility 0s linear .16s;
 }
 
-.card:hover + .popover {
+.card:hover + .popover,
+.card:focus-visible + .popover {
     opacity: 1;
     visibility: visible;
     pointer-events: none;

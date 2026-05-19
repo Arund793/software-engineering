@@ -113,7 +113,7 @@ export default function HelpCenter() {
                             />
                         ))}
                         {filtered.length === 0 && (
-                            <li className={s.item} style={{ padding: 14, textAlign: "center" }}>
+                            <li className={`${s.item} ${s.emptyItem}`}>
                                 검색 결과가 없습니다.
                             </li>
                         )}
@@ -200,4 +200,3 @@ function FaqItem({ q, a, open, onToggle }: {
         </li>
     );
 }
-

@@ -53,11 +53,20 @@ export default function ToolCard({ tool }: Props) {
     const long = tool.long ?? tool.subTitle ?? ""; // 상세 설명
     const platform = tool.subTitle ?? "";          // 하단 보조 텍스트
     const tags = Array.isArray(tool.tags) ? tool.tags.slice(0, 8) : [];
+    const hasUrl = Boolean(tool.url);
+    const popoverId = `tool-popover-${tool.id}`;
 
     return (
         <div className={s.wrap}>
             {/* ===== 기본 카드 ===== */}
-            <a className={s.card} href={tool.url || "#"} target="_blank" rel="noreferrer">
+            <a
+                className={`${s.card} ${!hasUrl ? s.noLink : ""}`}
+                href={tool.url}
+                target={hasUrl ? "_blank" : undefined}
+                rel={hasUrl ? "noreferrer" : undefined}
+                aria-disabled={!hasUrl || undefined}
+                aria-describedby={popoverId}
+            >
                 <div className={s.inner}>
                     {/* 왼쪽: 로고 */}
                     <div className={s.left}>
@@ -94,7 +103,7 @@ export default function ToolCard({ tool }: Props) {
             </a>
 
             {/* ===== 팝오버 (카드 위로 마우스 올릴 때 표시) ===== */}
-            <div className={s.popover} role="dialog" aria-hidden="true">
+            <div id={popoverId} className={s.popover} role="tooltip">
                 {/* 상단: 로고 + 이름 + 국가 뱃지 */}
                 <div className={s.popHead}>
                     <div className={s.popLogo}>

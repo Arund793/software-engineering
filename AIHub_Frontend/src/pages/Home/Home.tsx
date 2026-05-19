@@ -1,13 +1,13 @@
 // CompassAIFrontend/src/pages/home/Home.tsx
 import { useEffect, useState } from "react";
+import s from "./Home.module.css";
 import CategoryBar from "../../components/tool/CategoryBar/CategoryBar";
 import SearchBar from "../../components/tool/SearchBar/SearchBar";
 import ToolGrid from "../../components/tool/ToolGrid/ToolGrid";
 import type { Category } from "../../types/category";
 import type { Tool } from "../../types/tool";
-import { getTools } from "../../api/tools"; // ★ 서버에서 목록 가져오기
+import { getTools } from "../../api/tools";
 
-/** UI에 보여줄 카테고리 목록 */
 const CATEGORIES: Category[] = [
     { id: "write",         label: "글쓰기/콘텐츠" },
     { id: "design",        label: "디자인/아트" },
@@ -22,7 +22,6 @@ const CATEGORIES: Category[] = [
     { id: "life",          label: "일상생활형 서비스" },
 ];
 
-/** 데이터상 카테고리 표기가 섞여 있을 수 있어 매핑(동의어) 정의 */
 const CAT_LABELS: Record<string, string[]> = {
     write: ["글쓰기/콘텐츠", "글쓰기/컨텐츠"],
     design: ["디자인/아트"],
@@ -38,15 +37,14 @@ const CAT_LABELS: Record<string, string[]> = {
 };
 
 export default function Home() {
-    const [active, setActive]   = useState<string | null>(null); // 선택 카테고리(UI id)
-    const [query, setQuery]     = useState("");                  // 검색어
-    const [items, setItems]     = useState<Tool[]>([]);          // 서버 결과
+    const [active, setActive] = useState<string | null>(null);
+    const [query, setQuery] = useState("");
+    const [items, setItems] = useState<Tool[]>([]);
     const [loading, setLoading] = useState(false);
-    const [error, setError]     = useState<string | null>(null);
+    const [error, setError] = useState<string | null>(null);
 
     const handleSearch = (q: string) => setQuery(q);
 
-    // 서버에 보낼 실제 카테고리 라벨 (UI id → 첫 번째 라벨)
     const serverCategory = active ? CAT_LABELS[active]?.[0] ?? null : null;
 
     useEffect(() => {
@@ -78,51 +76,36 @@ export default function Home() {
     }, [serverCategory, query]);
 
     return (
-        <section className="home" style={{ textAlign: "center", padding: "28px 0" }}>
-            <h1 style={{ fontSize: 36, margin: "24px 0 16px" }}>
-                AI 툴을 빠르게 찾는 곳
-            </h1>
-            <p
-                style={{
-                    margin: "-4px auto 24px",
-                    maxWidth: 560,
-                    color: "var(--color-text-muted, #555555)",
-                    lineHeight: 1.6,
-                    fontWeight: 500,
-                }}
-            >
-                원하는 작업을 검색하거나 카테고리를 선택해 필요한 AI 서비스를 찾아보세요.
-            </p>
+        <section className={s.home}>
+            <div className={s.hero}>
+                <h1 className={s.title}>AI 툴을 빠르게 찾는 곳</h1>
+                <p className={s.lead}>
+                    원하는 작업을 검색하거나 카테고리를 선택해 필요한 AI 서비스를 찾아보세요.
+                </p>
+            </div>
 
             <SearchBar placeholder="AI 서비스 검색" onSearch={handleSearch} />
 
-            <div style={{ marginTop: 16 }}>
+            <div className={s.categoryArea}>
                 <CategoryBar items={CATEGORIES} activeId={active} onChange={setActive} />
             </div>
 
             {loading && (
-                <p style={{ marginTop: 40 }}>불러오는 중…</p>
+                <p className={s.status}>불러오는 중…</p>
             )}
 
             {error && (
-                <p style={{ marginTop: 40, color: "crimson" }}>오류: {error}</p>
+                <p className={`${s.status} ${s.error}`}>오류: {error}</p>
             )}
 
             {!loading && !error && (items.length === 0 ? (
-                <p
-                    style={{
-                        marginTop: "40px",
-                        fontSize: "18px",
-                        color: "#666",
-                        fontWeight: 500,
-                    }}
-                >
+                <p className={s.empty}>
                     {active
                         ? "선택한 카테고리에 해당하는 서비스가 없습니다."
                         : "해당하는 서비스가 없습니다."}
                 </p>
             ) : (
-                <div className="tool-section">
+                <div className={s.toolSection}>
                     <ToolGrid items={items} />
                 </div>
             ))}
