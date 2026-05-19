@@ -1,0 +1,84 @@
+/* ===== Design Tokens ===== */
+:root {
+    /* ---- 헤더 레이아웃 ---- */
+    --header-h: 80px;
+    --header-pad-x: 28px;
+
+    /* ---- 브랜드 ---- */
+    --brand-logo-h: 56px;
+    --brand-font: 26px;
+    --brand-nudge-y: 0px;
+
+    /* ---- 폰트 스케일 (AccessibilityContext에서 JS로 오버라이드) ---- */
+    --font-scale: 1;
+
+    /* ---- Tool Card ---- */
+    --tool-card-radius: 16px;
+    --tool-card-pad: 16px;
+    --tool-card-gap: 16px;
+    --tool-grid-max: 1350px;
+    --tool-card-w: 320px;
+    --tool-card-h: 150px;
+
+    /* ============================================
+       라이트 모드 색상 (기본)
+       ============================================ */
+    --color-bg:               #f8f9fc;
+    --color-header-bg:        #ffffff;
+    --color-border:           #e8e8ee;
+    --color-text:             #111111;
+    --color-text-muted:       #555555;
+    --color-card-bg:          #ffffff;
+    --color-card-border:      #e4e4eb;
+    --color-card-shadow:      rgba(0, 0, 0, 0.07);
+    --color-btn-bg:           #f0f0f5;
+    --color-btn-border:       #d0d0d8;
+    --color-btn-hover:        #e2e2ea;
+    --color-btn-hover-border: #aaaaaa;
+    --color-accent:           #4361ee;
+    --color-accent-hover:     #3a54d6;
+    --color-input-bg:         #ffffff;
+    --color-input-border:     #d8d8e0;
+    --color-tag-bg:           #eef0ff;
+    --color-tag-text:         #4361ee;
+    --color-success:          #22c55e;
+    --color-error:            #ef4444;
+}
+
+/* ============================================
+   다크 모드 색상
+   ============================================ */
+[data-theme="dark"] {
+    --color-bg:               #0f1117;
+    --color-header-bg:        #1a1c27;
+    --color-border:           #2a2d3e;
+    --color-text:             #e8eaf0;
+    --color-text-muted:       #8b8fa8;
+    --color-card-bg:          #1e2030;
+    --color-card-border:      #2e3148;
+    --color-card-shadow:      rgba(0, 0, 0, 0.35);
+    --color-btn-bg:           #252840;
+    --color-btn-border:       #3a3d58;
+    --color-btn-hover:        #2f334e;
+    --color-btn-hover-border: #5a5e80;
+    --color-accent:           #6c8aff;
+    --color-accent-hover:     #8fa3ff;
+    --color-input-bg:         #1e2030;
+    --color-input-border:     #3a3d58;
+    --color-tag-bg:           #1e2540;
+    --color-tag-text:         #6c8aff;
+    --color-success:          #4ade80;
+    --color-error:            #f87171;
+}
+
+/* ============================================
+   반응형: 모바일 토큰
+   ============================================ */
+@media (max-width: 640px) {
+    :root {
+        --header-h: 60px;
+        --header-pad-x: 16px;
+        --brand-logo-h: 36px;
+        --brand-font: 20px;
+    }
+}

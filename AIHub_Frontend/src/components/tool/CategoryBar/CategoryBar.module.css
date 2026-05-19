@@ -1,0 +1,61 @@
+/* ===== 카테고리 바 ===== */
+.catbar {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 0 4px;
+}
+
+.track {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 0;
+}
+
+/* ===== 개별 카테고리 버튼 ===== */
+.chip {
+    display: inline-flex;
+    align-items: center;
+    height: 40px;
+    padding: 0 18px;
+    border: 1.5px solid var(--color-card-border, #e5e7eb);
+    border-radius: 20px;
+    background: var(--color-card-bg, #ffffff);
+    color: var(--color-text, #111111);
+    font-size: calc(14px * var(--font-scale, 1));
+    cursor: pointer;
+    user-select: none;
+    transition: all .15s ease, font-size 0.2s;
+    font-weight: 500;
+}
+
+.chip:hover {
+    background: var(--color-btn-hover, #e8e8e8);
+    border-color: var(--color-btn-hover-border, #aaaaaa);
+}
+
+/* 활성 상태 */
+.chip.active {
+    background: var(--color-accent, #4361ee);
+    color: #fff;
+    border-color: var(--color-accent, #4361ee);
+    font-weight: 700;
+}
+
+.chip.active:hover {
+    background: var(--color-accent-hover, #3a54d6);
+    border-color: var(--color-accent-hover, #3a54d6);
+}
+
+/* ===== 반응형 ===== */
+@media (max-width: 640px) {
+    .chip {
+        height: 34px;
+        font-size: calc(13px * var(--font-scale, 1));
+        padding: 0 12px;
+    }
+}

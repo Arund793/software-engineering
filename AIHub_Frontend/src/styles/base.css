@@ -1,0 +1,59 @@
+/* ===== Global Base ===== */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    /* 글자 크기: --font-scale을 JS에서 설정, 기본 16px 기반 */
+    font-size: calc(16px * var(--font-scale, 1));
+    transition: font-size 0.2s ease;
+}
+
+body {
+    margin: 0;
+    font-family: "Noto Sans KR", "Apple SD Gothic Neo", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    background: var(--color-bg, #f8f9fc);
+    color: var(--color-text, #111111);
+    transition: background 0.3s ease, color 0.3s ease;
+    min-height: 100dvh;
+}
+
+html, body, #root {
+    height: 100%;
+}
+
+/* 중앙 정렬 컨테이너 */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 16px;
+}
+
+/* 전체 레이아웃 */
+.app {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    background: var(--color-bg, #f8f9fc);
+}
+
+/* 헤더 제외 영역 (메인 콘텐츠) */
+.main {
+    flex: 1;
+    display: flex;
+}
+
+/* 스크롤바 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--color-bg, #f8f9fc);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--color-btn-border, #d0d0d8);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-text-muted, #555555);
+}

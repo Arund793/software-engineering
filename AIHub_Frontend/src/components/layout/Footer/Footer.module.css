@@ -1,0 +1,10 @@
+/* ===== 푸터 ===== */
+.footer {
+    border-top: 1px solid var(--color-border, #eeeeee);
+    background: var(--color-header-bg, #ffffff);
+    padding: 28px 0;
+    text-align: center;
+    font-size: calc(13px * var(--font-scale, 1));
+    color: var(--color-text-muted, #666666);
+    transition: background 0.3s, border-color 0.3s, color 0.3s, font-size 0.2s;
+}

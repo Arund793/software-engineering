@@ -1,0 +1,162 @@
+/* Header.module.css — AI Hub 헤더 */
+
+.header {
+    position: relative;
+    height: var(--header-h);
+    display: flex;
+    background: var(--color-header-bg, #ffffff);
+    border-bottom: 1px solid var(--color-border, #eeeeee);
+    transition: background 0.3s, border-color 0.3s;
+}
+
+.inner {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 var(--header-pad-x);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+}
+
+/* ===== Brand ===== */
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.logo {
+    height: var(--brand-logo-h);
+    width: auto;
+    display: block;
+    object-fit: contain;
+}
+
+.text {
+    font-weight: 800;
+    font-size: calc(var(--brand-font) * var(--font-scale, 1));
+    color: var(--color-text, #111111);
+    letter-spacing: 0.2px;
+    line-height: 1;
+    transition: color 0.3s, font-size 0.2s;
+}
+
+/* ===== Controls (접근성 버튼들) ===== */
+.controls {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+/* 글자 크기 버튼 */
+.accessBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border: 2px solid var(--color-btn-border, #d0d0d0);
+    border-radius: 999px;
+    background: var(--color-btn-bg, #f5f5f5);
+    color: var(--color-text, #111111);
+    cursor: pointer;
+    font-size: calc(14px * var(--font-scale, 1));
+    font-weight: 600;
+    line-height: 1;
+    transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.1s;
+    white-space: nowrap;
+}
+
+.accessBtn:hover {
+    background: var(--color-btn-hover, #e8e8e8);
+    border-color: var(--color-btn-hover-border, #aaaaaa);
+    transform: translateY(-1px);
+}
+
+.accessBtn:active {
+    transform: translateY(0);
+}
+
+/* 글자 크기 아이콘 */
+.accessIcon {
+    font-size: calc(18px * var(--font-scale, 1));
+    font-weight: 800;
+    line-height: 1;
+}
+
+/* 글자 크기 초기화 버튼 */
+.accessBtnSmall {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border: 2px solid var(--color-btn-border, #d0d0d0);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--color-text-muted, #666666);
+    cursor: pointer;
+    font-size: calc(12px * var(--font-scale, 1));
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+}
+
+.accessBtnSmall:hover {
+    background: var(--color-btn-hover, #e8e8e8);
+    color: var(--color-text, #111111);
+}
+
+/* 다크모드 버튼 */
+.themeBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border: 2px solid var(--color-btn-border, #d0d0d0);
+    border-radius: 999px;
+    background: var(--color-btn-bg, #f5f5f5);
+    color: var(--color-text, #111111);
+    cursor: pointer;
+    font-size: calc(14px * var(--font-scale, 1));
+    font-weight: 600;
+    line-height: 1;
+    transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.1s;
+    white-space: nowrap;
+}
+
+.themeBtn:hover {
+    background: var(--color-btn-hover, #e8e8e8);
+    border-color: var(--color-btn-hover-border, #aaaaaa);
+    transform: translateY(-1px);
+}
+
+.themeBtn:active {
+    transform: translateY(0);
+}
+
+/* 버튼 텍스트 레이블 */
+.accessLabel {
+    font-size: calc(12px * var(--font-scale, 1));
+    font-weight: 500;
+    color: var(--color-text-muted, #666666);
+}
+
+/* ===== 반응형 ===== */
+@media (max-width: 640px) {
+    .accessLabel {
+        display: none;
+    }
+
+    .accessBtn,
+    .themeBtn {
+        padding: 8px 10px;
+    }
+
+    .controls {
+        gap: 6px;
+    }
+}

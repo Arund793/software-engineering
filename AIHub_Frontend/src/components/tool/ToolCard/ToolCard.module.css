@@ -1,0 +1,253 @@
+/* ToolCard.module.css — 다크모드 CSS 변수 대응 */
+
+/* ================= 카드 기본 ================= */
+.card {
+    position: relative;
+    background: var(--color-card-bg, #ffffff);
+    border: 1px solid var(--color-card-border, #e5e7eb);
+    border-radius: var(--tool-card-radius);
+    padding: var(--tool-card-pad);
+    box-shadow: 0 8px 18px var(--color-card-shadow, rgba(0, 0, 0, .04));
+    transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease,
+                background 0.3s, color 0.3s;
+    cursor: pointer;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--color-text, #111111);
+    display: block;
+    width: var(--tool-card-w);
+    height: var(--tool-card-h);
+}
+.card:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, .12);
+    border-color: var(--color-accent, #4361ee);
+}
+
+/* =============== 카드 내부 레이아웃 =============== */
+.inner {
+    display: grid;
+    grid-template-columns: 0.28fr 0.72fr;
+    position: relative;
+    height: 100%;
+}
+
+.card::after {
+    content: "";
+    position: absolute;
+    top: 12px;
+    bottom: 12px;
+    left: 28%;
+    width: 1px;
+    background: transparent;
+    pointer-events: none;
+}
+
+/* 좌측: 로고 박스 */
+.left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.logo {
+    width: 54px;
+    height: 54px;
+    border-radius: 12px;
+    background: var(--color-bg, #f8f9fc);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 6px 16px var(--color-card-shadow, rgba(0, 0, 0, .06));
+}
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* 우측: 텍스트 블록 */
+.right {
+    position: relative;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    min-width: 0;
+}
+.right::before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    top: 50%;
+    height: 1px;
+    background: transparent;
+    transform: translateY(-0.5px);
+    pointer-events: none;
+}
+
+.rightTop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4px;
+    text-align: center;
+    padding: 8px;
+}
+.title {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+.titleKo {
+    font-size: calc(17px * var(--font-scale, 1));
+    font-weight: 800;
+    color: var(--color-text, #111111);
+    line-height: 1.25;
+    transition: font-size 0.2s;
+}
+.titleEn {
+    font-size: calc(14px * var(--font-scale, 1));
+    font-weight: 700;
+    color: var(--color-text-muted, #6b7280);
+    line-height: 1.2;
+    transition: font-size 0.2s;
+}
+
+.rightBottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8px;
+}
+.desc {
+    margin: 0;
+    color: var(--color-accent, #4361ee);
+    font-weight: 800;
+    white-space: normal;
+    word-break: keep-all;
+    font-size: calc(13px * var(--font-scale, 1));
+    transition: font-size 0.2s;
+}
+
+/* ================ 팝오버(확장 카드) ================ */
+.wrap {
+    position: relative;
+    display: inline-block;
+}
+.wrap:hover { z-index: 100; }
+
+.popover {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, calc(-100% - 12px)) scale(.98);
+    width: 560px;
+    max-width: min(560px, calc(100vw - 32px));
+    background: var(--color-card-bg, #ffffff);
+    color: var(--color-text, #111111);
+    border-radius: 16px;
+    border: 1px solid var(--color-card-border, #e5e7eb);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, .18);
+    padding: 16px 18px;
+    z-index: 60;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .16s ease, transform .16s ease, visibility 0s linear .16s;
+}
+
+.card:hover + .popover {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: none;
+    transform: translate(-50%, calc(-100% - 16px)) scale(1);
+    transition: opacity .16s ease, transform .16s ease;
+}
+
+/* 팝오버 말풍선 꼬리 */
+.popover::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -8px;
+    transform: translateX(-50%);
+    border: 8px solid transparent;
+    border-top-color: var(--color-card-bg, #ffffff);
+}
+
+/* 팝오버 내부 */
+.popHead {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    position: relative;
+}
+.popLogo {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--color-bg, #f8f9fc);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.popLogo img { width: 100%; height: 100%; object-fit: contain; }
+
+.popTitleBox { flex: 1; min-width: 0; }
+.popTitle {
+    font-size: calc(18px * var(--font-scale, 1));
+    font-weight: 800;
+    line-height: 1.25;
+    color: var(--color-text, #111111);
+    transition: font-size 0.2s;
+}
+.popEn { font-weight: 700; color: var(--color-text-muted, #6b7280); }
+.popSub {
+    margin-top: 2px;
+    font-size: calc(14px * var(--font-scale, 1));
+    color: var(--color-accent, #4361ee);
+    font-weight: 700;
+    transition: font-size 0.2s;
+}
+
+.badge {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: calc(12px * var(--font-scale, 1));
+    padding: 4px 8px;
+    border-radius: 999px;
+    font-weight: 800;
+    transition: font-size 0.2s;
+}
+.badgeKr { background: #10b981; color: #032318; }
+.badgeGl { background: #8b5cf6; color: #fff; }
+
+.popBody {
+    margin-top: 12px;
+    font-size: calc(14px * var(--font-scale, 1));
+    line-height: 1.6;
+    color: var(--color-text, #111111);
+    transition: font-size 0.2s;
+}
+
+.tags { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px; }
+.tag {
+    font-size: calc(12px * var(--font-scale, 1));
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--color-card-border, #e5e7eb);
+    color: var(--color-tag-text, #4361ee);
+    background: var(--color-tag-bg, #eef0ff);
+    transition: font-size 0.2s;
+}
+
+/* ================ 반응형 ================ */
+@media (max-width: 640px) {
+    .popover { transform: translate(-50%, calc(-100% - 10px)) scale(1); }
+}

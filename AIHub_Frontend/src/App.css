@@ -1,0 +1,28 @@
+/* ===== App Layout ===== */
+html, body, #root { height: 100%; }
+
+/* 전체 레이아웃 */
+.app {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    background: var(--color-bg, #f8f9fc);
+    transition: background 0.3s;
+}
+
+/* 메인 컨테이너 */
+.container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 16px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+/* 헤더 제외 영역 */
+.main {
+    flex: 1;
+    display: flex;
+}
