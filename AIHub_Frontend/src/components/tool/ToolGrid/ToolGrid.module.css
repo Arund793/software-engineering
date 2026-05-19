@@ -2,8 +2,8 @@
 .section {
     /* 4열 총폭 = (카드 폭 × 4) + (갭 × 3) */
     max-width: calc(var(--tool-card-w) * 4 + var(--tool-card-gap) * 3);
-    margin: 24px auto;
-    padding: 0 16px;
+    margin: 28px auto 36px;
+    padding: 0;
     box-sizing: content-box; /* padding이 max-width 계산에 포함되지 않도록 */
 
     /* 팝오버가 영역 밖으로 나와도 잘리지 않게 */
@@ -41,9 +41,10 @@
 
 @media (max-width: 520px) {
     .section {
+        width: 100%;
         max-width: var(--tool-card-w);
     }
     .grid {
-        grid-template-columns: var(--tool-card-w); /* 1열 */
+        grid-template-columns: minmax(0, 1fr); /* 1열 */
     }
 }

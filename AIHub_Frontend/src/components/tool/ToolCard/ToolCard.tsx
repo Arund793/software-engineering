@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { Tool } from "../../../types/tool";
 import s from "./ToolCard.module.css";
 
@@ -30,12 +30,16 @@ export default function ToolCard({ tool }: Props) {
         const logos = `/logos/${name}.png`;
         const images = `/images/${name}.png`;
         const list = [tool.logo, asIs, logos, images].filter(Boolean) as string[];
-        return list.map((p) => encodeURI(p));
+        return Array.from(new Set(list.map((p) => encodeURI(p))));
     }, [tool.logo, tool.name]);
 
     /** 현재 표시 중인 이미지 인덱스 */
     const [idx, setIdx] = useState(0);
-    const src = candidates[idx] ?? "";
+    const src = candidates[idx] ?? candidates[0] ?? "";
+
+    useEffect(() => {
+        setIdx(0);
+    }, [candidates]);
 
     /** 🔹 이름을 한글 / 영어(괄호)로 분리 */
     const { koName, enName } = useMemo(() => {
@@ -64,7 +68,9 @@ export default function ToolCard({ tool }: Props) {
                                     alt={tool.name}
                                     onError={() => {
                                         // 로딩 실패 시 다음 후보로 교체
-                                        if (idx < candidates.length - 1) setIdx(idx + 1);
+                                        setIdx((current) =>
+                                            current < candidates.length - 1 ? current + 1 : current
+                                        );
                                     }}
                                 />
                             )}

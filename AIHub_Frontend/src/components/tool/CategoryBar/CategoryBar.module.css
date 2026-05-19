@@ -13,7 +13,7 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 8px;
-    padding: 8px 0;
+    padding: 10px 0;
 }
 
 /* ===== 개별 카테고리 버튼 ===== */
@@ -23,19 +23,20 @@
     height: 40px;
     padding: 0 18px;
     border: 1.5px solid var(--color-card-border, #e5e7eb);
-    border-radius: 20px;
+    border-radius: 999px;
     background: var(--color-card-bg, #ffffff);
     color: var(--color-text, #111111);
     font-size: calc(14px * var(--font-scale, 1));
     cursor: pointer;
     user-select: none;
-    transition: all .15s ease, font-size 0.2s;
+    transition: background .15s ease, border-color .15s ease, color .15s ease, transform .15s ease, font-size 0.2s;
     font-weight: 500;
 }
 
 .chip:hover {
     background: var(--color-btn-hover, #e8e8e8);
     border-color: var(--color-btn-hover-border, #aaaaaa);
+    transform: translateY(-1px);
 }
 
 /* 활성 상태 */
@@ -53,7 +54,21 @@
 
 /* ===== 반응형 ===== */
 @media (max-width: 640px) {
+    .catbar {
+        justify-content: flex-start;
+        overflow-x: auto;
+        margin: 0 -14px;
+        padding: 0 14px;
+    }
+
+    .track {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        padding-bottom: 12px;
+    }
+
     .chip {
+        flex: 0 0 auto;
         height: 34px;
         font-size: calc(13px * var(--font-scale, 1));
         padding: 0 12px;

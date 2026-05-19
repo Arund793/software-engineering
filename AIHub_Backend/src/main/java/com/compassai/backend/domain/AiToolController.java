@@ -22,11 +22,13 @@ public class AiToolController {
             @RequestParam(defaultValue="0") int page,
             @RequestParam(defaultValue="20") int size
     ) {
+        int pageNumber = Math.max(page, 0);
+        int pageSize = Math.min(Math.max(size, 1), 100);
         Page<AiTool> p = repo.findAllFiltered(
-                (category != null && !category.isBlank()) ? category : null,
-                (q != null && !q.isBlank()) ? q : null,
-                (origin != null && !origin.isBlank()) ? origin : null,
-                PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "updatedAt"))
+                normalize(category),
+                normalize(q),
+                normalize(origin),
+                PageRequest.of(pageNumber, pageSize, Sort.by(Sort.Direction.DESC, "updatedAt"))
         );
         return p.map(this::toDto);
     }
@@ -35,6 +37,12 @@ public class AiToolController {
     public AiToolResponse get(@PathVariable Long id) {
         AiTool t = repo.findById(id).orElseThrow();
         return toDto(t);
+    }
+
+    private String normalize(String value) {
+        if (value == null) return null;
+        String trimmed = value.trim();
+        return trimmed.isEmpty() ? null : trimmed;
     }
 
     private AiToolResponse toDto(AiTool t) {

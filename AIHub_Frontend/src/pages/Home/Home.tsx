@@ -1,5 +1,5 @@
 // CompassAIFrontend/src/pages/home/Home.tsx
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import CategoryBar from "../../components/tool/CategoryBar/CategoryBar";
 import SearchBar from "../../components/tool/SearchBar/SearchBar";
 import ToolGrid from "../../components/tool/ToolGrid/ToolGrid";
@@ -47,11 +47,7 @@ export default function Home() {
     const handleSearch = (q: string) => setQuery(q);
 
     // 서버에 보낼 실제 카테고리 라벨 (UI id → 첫 번째 라벨)
-    const serverCategory = useMemo(() => {
-        if (!active) return null;
-        const arr = CAT_LABELS[active] ?? [];
-        return arr[0] ?? null;
-    }, [active]);
+    const serverCategory = active ? CAT_LABELS[active]?.[0] ?? null : null;
 
     useEffect(() => {
         let dead = false;
@@ -82,10 +78,21 @@ export default function Home() {
     }, [serverCategory, query]);
 
     return (
-        <section className="home" style={{ textAlign: "center", padding: "32px 0" }}>
+        <section className="home" style={{ textAlign: "center", padding: "28px 0" }}>
             <h1 style={{ fontSize: 36, margin: "24px 0 16px" }}>
                 AI 툴을 빠르게 찾는 곳
             </h1>
+            <p
+                style={{
+                    margin: "-4px auto 24px",
+                    maxWidth: 560,
+                    color: "var(--color-text-muted, #555555)",
+                    lineHeight: 1.6,
+                    fontWeight: 500,
+                }}
+            >
+                원하는 작업을 검색하거나 카테고리를 선택해 필요한 AI 서비스를 찾아보세요.
+            </p>
 
             <SearchBar placeholder="AI 서비스 검색" onSearch={handleSearch} />
 
