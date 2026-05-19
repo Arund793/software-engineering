@@ -154,7 +154,7 @@ export default function Signup() {
                     {err.confirm && <span className={s.error}>{err.confirm}</span>}
                 </label>
 
-                <label className={s.check} style={{ marginTop: 12 }}>
+                <label className={`${s.check} ${s.termsCheck}`}>
                     <input
                         type="checkbox"
                         checked={agree}

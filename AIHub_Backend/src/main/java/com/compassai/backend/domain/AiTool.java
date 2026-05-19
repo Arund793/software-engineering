@@ -2,6 +2,7 @@ package com.compassai.backend.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.BatchSize;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -44,6 +45,7 @@ public class AiTool {
     private LocalDateTime updatedAt;
 
     @ManyToMany
+    @BatchSize(size = 50)
     @JoinTable(
             name = "ai_tool_category",
             joinColumns = @JoinColumn(name = "tool_id"),

@@ -1,32 +1,20 @@
 // src/components/layout/Header/Header.tsx
-import { useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import s from "./Header.module.css";
-import { useAccessibility } from "@/context/AccessibilityContext";
+import { useAccessibility } from "@/context/useAccessibility";
 
 export default function Header() {
     const { theme, fontSize, toggleTheme, increaseFontSize, resetFontSize } =
         useAccessibility();
 
-    const goHome = (e: React.MouseEvent) => {
-        e.preventDefault();
-        window.location.href = "/";
-    };
-
-    const fontLabel =
-        fontSize === "normal"
-            ? "가 (보통)"
-            : fontSize === "large"
-            ? "가 (크게)"
-            : "가 (매우 크게)";
-
     return (
         <header className={s.header}>
             <div className={s.inner}>
                 {/* 브랜드 로고 */}
-                <a href="/" className={s.brand} aria-label="AI Hub 홈" onClick={goHome}>
+                <Link to="/" className={s.brand} aria-label="AI Hub 홈">
                     <img className={s.logo} src="/logo.png" alt="AI Hub 로고" />
                     <span className={s.text}>AI Hub</span>
-                </a>
+                </Link>
 
                 {/* 접근성 버튼 그룹 */}
                 <div className={s.controls} aria-label="접근성 컨트롤">
@@ -36,11 +24,11 @@ export default function Header() {
                         type="button"
                         className={s.accessBtn}
                         onClick={increaseFontSize}
-                        title={`글자 크기 변경 (현재: ${fontLabel})`}
-                        aria-label="글자 크기 키우기"
+                        title="쉬운UI"
+                        aria-label="쉬운UI"
                     >
                         <span className={s.accessIcon} aria-hidden="true">가</span>
-                        <span className={s.accessLabel}>{fontLabel}</span>
+                        <span className={s.accessLabel}>쉬운UI</span>
                     </button>
 
                     {/* 글자 크기 초기화 버튼 */}

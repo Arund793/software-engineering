@@ -3,8 +3,8 @@
     position: relative;
     display: flex;
     align-items: center;
-    gap: 8px;
-    width: min(920px, 92vw);
+    gap: 10px;
+    width: min(760px, 100%);
     margin: 0 auto;
 }
 
@@ -15,12 +15,13 @@
     flex: 1;
     height: 52px;
     padding: 0 44px 0 18px;
-    border: 2px solid var(--color-input-border, #d8d8e0);
-    border-radius: 14px;
+    border: 1.5px solid var(--color-input-border, #d8d8e0);
+    border-radius: 12px;
     background: var(--color-input-bg, #ffffff);
     color: var(--color-text, #111111);
     font-size: calc(16px * var(--font-scale, 1));
     outline: none;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
     transition: border-color .15s ease, box-shadow .15s ease,
                 background 0.3s, color 0.3s, font-size 0.2s;
 }
@@ -31,7 +32,7 @@
 
 .input:focus {
     border-color: var(--color-accent, #4361ee);
-    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.12);
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.13), 0 12px 28px rgba(15, 23, 42, 0.08);
 }
 
 /* ===== 중앙 placeholder ===== */
@@ -77,8 +78,8 @@
 .button {
     height: 52px;
     padding: 0 22px;
-    border: 2px solid var(--color-accent, #4361ee);
-    border-radius: 14px;
+    border: 1.5px solid var(--color-accent, #4361ee);
+    border-radius: 12px;
     background: var(--color-accent, #4361ee);
     color: #fff;
     cursor: pointer;
@@ -89,4 +90,21 @@
 .button:hover {
     background: var(--color-accent-hover, #3a54d6);
     border-color: var(--color-accent-hover, #3a54d6);
+}
+
+@media (max-width: 560px) {
+    .wrap {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 8px;
+    }
+
+    .input,
+    .button {
+        height: 48px;
+    }
+
+    .clear {
+        right: 84px;
+    }
 }
