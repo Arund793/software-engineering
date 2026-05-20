@@ -6,6 +6,7 @@ import App from "./App.tsx";
 import Home from "./pages/Home/Home.tsx";
 import HelpCenter from "./pages/Help/HelpCenter";
 import SubmitToolPage from "./pages/Submit/SubmitToolPage.tsx";
+import NotFound from "./pages/NotFound/NotFound";
 import { AccessibilityProvider } from "./context/AccessibilityContext.tsx";
 import "./index.css";
 
@@ -25,10 +26,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
                         <Route path="submit" element={<SubmitToolPage />} />
 
                         {/* 404 */}
-                        <Route
-                            path="*"
-                            element={<div style={{ padding: 24 }}>404 - Page Not Found</div>}
-                        />
+                        <Route path="*" element={<NotFound />} />
                     </Route>
                 </Routes>
             </BrowserRouter>

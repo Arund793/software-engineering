@@ -72,6 +72,7 @@
 
 /* 약관/링크 */
 .check { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; }
+.termsCheck { margin-top: 12px; }
 .link { color: #111; text-decoration: none; }
 .link:hover { text-decoration: underline; }
 

@@ -13,6 +13,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -64,7 +65,7 @@ public class AuthController {
     )
     @PostMapping("/signup")
     public ResponseEntity<?> signup(
-            @org.springframework.web.bind.annotation.RequestBody UserSignupRequest req,
+            @Valid @org.springframework.web.bind.annotation.RequestBody UserSignupRequest req,
             HttpSession session
     ) {
         try {
@@ -106,7 +107,7 @@ public class AuthController {
     )
     @PostMapping("/login")
     public ResponseEntity<?> login(
-            @org.springframework.web.bind.annotation.RequestBody UserLoginRequest req,
+            @Valid @org.springframework.web.bind.annotation.RequestBody UserLoginRequest req,
             HttpServletRequest httpReq,
             HttpSession session
     ) {

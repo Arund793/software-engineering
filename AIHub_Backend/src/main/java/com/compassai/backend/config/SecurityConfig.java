@@ -2,6 +2,7 @@ package com.compassai.backend.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -25,7 +26,7 @@ public class SecurityConfig {
         http
                 // CORS 설정을 활성화한다
                 .cors(Customizer.withDefaults())
-                // CSRF를 비활성화한다. API 서버에서는 토큰이나 세션으로만 검증하는 경우가 많다
+                // 세션 기반 인증을 쓰지만 현재 프론트는 CSRF 토큰을 주고받지 않으므로 개발 단계에서는 비활성화한다.
                 .csrf(csrf -> csrf.disable())
                 // 요청별 접근 권한을 설정한다
                 .authorizeHttpRequests(auth -> auth
@@ -33,10 +34,10 @@ public class SecurityConfig {
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                         // 인증 관련 API는 모두 허용한다
                         .requestMatchers("/api/auth/**").permitAll()
-                        // 나머지 API도 현재는 모두 열어 둔다
-                        .requestMatchers("/api/**").permitAll()
-                        // 그 외 요청도 전부 허용한다
-                        .anyRequest().permitAll()
+                        // 도구 목록/상세 조회는 공개 API로 둔다
+                        .requestMatchers(HttpMethod.GET, "/api/tools/**").permitAll()
+                        // 그 외 API는 로그인된 사용자만 접근한다
+                        .anyRequest().authenticated()
                 )
                 // 폼 로그인은 사용하지 않는다
                 .formLogin(form -> form.disable())

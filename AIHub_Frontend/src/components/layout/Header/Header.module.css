@@ -1,12 +1,15 @@
 /* Header.module.css — AI Hub 헤더 */
 
 .header {
-    position: relative;
+    position: sticky;
+    top: 0;
+    z-index: 20;
     height: var(--header-h);
     display: flex;
     background: var(--color-header-bg, #ffffff);
     border-bottom: 1px solid var(--color-border, #eeeeee);
-    transition: background 0.3s, border-color 0.3s;
+    box-shadow: 0 1px 0 rgba(15, 23, 42, 0.03);
+    transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
 }
 
 .inner {
@@ -26,6 +29,7 @@
     display: inline-flex;
     align-items: center;
     gap: 12px;
+    min-width: 0;
     text-decoration: none;
     flex-shrink: 0;
 }
@@ -61,7 +65,7 @@
     gap: 6px;
     padding: 8px 16px;
     border: 2px solid var(--color-btn-border, #d0d0d0);
-    border-radius: 999px;
+    border-radius: 12px;
     background: var(--color-btn-bg, #f5f5f5);
     color: var(--color-text, #111111);
     cursor: pointer;
@@ -95,7 +99,7 @@
     align-items: center;
     padding: 6px 12px;
     border: 2px solid var(--color-btn-border, #d0d0d0);
-    border-radius: 999px;
+    border-radius: 10px;
     background: transparent;
     color: var(--color-text-muted, #666666);
     cursor: pointer;
@@ -117,7 +121,7 @@
     gap: 6px;
     padding: 8px 16px;
     border: 2px solid var(--color-btn-border, #d0d0d0);
-    border-radius: 999px;
+    border-radius: 12px;
     background: var(--color-btn-bg, #f5f5f5);
     color: var(--color-text, #111111);
     cursor: pointer;
@@ -158,5 +162,9 @@
 
     .controls {
         gap: 6px;
+    }
+
+    .brand {
+        gap: 8px;
     }
 }

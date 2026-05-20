@@ -22,27 +22,6 @@ html, body, #root {
     height: 100%;
 }
 
-/* 중앙 정렬 컨테이너 */
-.container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 16px;
-}
-
-/* 전체 레이아웃 */
-.app {
-    min-height: 100dvh;
-    display: flex;
-    flex-direction: column;
-    background: var(--color-bg, #f8f9fc);
-}
-
-/* 헤더 제외 영역 (메인 콘텐츠) */
-.main {
-    flex: 1;
-    display: flex;
-}
-
 /* 스크롤바 */
 ::-webkit-scrollbar {
     width: 8px;
