@@ -4,22 +4,46 @@
 }
 
 html {
-    /* 글자 크기: --font-scale을 JS에서 설정, 기본 16px 기반 */
-    font-size: calc(16px * var(--font-scale, 1));
+    font-size: 17px;
     transition: font-size 0.2s ease;
 }
 
 body {
     margin: 0;
-    font-family: "Noto Sans KR", "Apple SD Gothic Neo", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    font-family: var(--font-text);
+    font-size: var(--type-body);
+    line-height: 1.47;
     background: var(--color-bg, #f8f9fc);
     color: var(--color-text, #111111);
     transition: background 0.3s ease, color 0.3s ease;
     min-height: 100dvh;
+    letter-spacing: 0;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
 }
 
 html, body, #root {
     height: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+    letter-spacing: 0;
+}
+
+button {
+    min-height: 44px;
+}
+
+a {
+    color: inherit;
+}
+
+::selection {
+    background: rgba(0, 102, 204, 0.18);
 }
 
 /* 스크롤바 */

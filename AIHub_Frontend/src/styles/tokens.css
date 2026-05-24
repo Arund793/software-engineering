@@ -1,84 +1,134 @@
 /* ===== Design Tokens ===== */
 :root {
-    /* ---- 헤더 레이아웃 ---- */
-    --header-h: 80px;
-    --header-pad-x: 28px;
+    /* Layout */
+    --global-nav-h: 44px;
+    --sub-nav-h: 52px;
+    --header-h: calc(var(--global-nav-h) + var(--sub-nav-h));
+    --header-pad-x: 24px;
+    --content-max: 1440px;
+    --copy-max: 980px;
 
-    /* ---- 브랜드 ---- */
-    --brand-logo-h: 56px;
-    --brand-font: 26px;
-    --brand-nudge-y: 0px;
+    /* Brand */
+    --brand-logo-h: 24px;
+    --brand-font: 21px;
 
-    /* ---- 폰트 스케일 (AccessibilityContext에서 JS로 오버라이드) ---- */
+    /* AccessibilityContext overrides this value. */
     --font-scale: 1;
 
-    /* ---- Tool Card ---- */
-    --tool-card-radius: 8px;
-    --tool-card-pad: 16px;
-    --tool-card-gap: 18px;
-    --tool-grid-max: 1350px;
-    --tool-card-w: 320px;
-    --tool-card-h: 150px;
+    /* Spacing */
+    --space-xxs: 4px;
+    --space-xs: 8px;
+    --space-sm: 12px;
+    --space-md: 17px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    --space-xxl: 48px;
+    --space-section: 80px;
 
-    /* ============================================
-       라이트 모드 색상 (기본)
-       ============================================ */
-    --color-bg:               #f6f7fb;
-    --color-header-bg:        #ffffff;
-    --color-border:           #e8e8ee;
-    --color-text:             #111111;
-    --color-text-muted:       #555555;
-    --color-card-bg:          #ffffff;
-    --color-card-border:      #e4e4eb;
-    --color-card-shadow:      rgba(15, 23, 42, 0.08);
-    --color-btn-bg:           #f0f0f5;
-    --color-btn-border:       #d0d0d8;
-    --color-btn-hover:        #e2e2ea;
-    --color-btn-hover-border: #aaaaaa;
-    --color-accent:           #4361ee;
-    --color-accent-hover:     #3a54d6;
-    --color-input-bg:         #ffffff;
-    --color-input-border:     #d8d8e0;
-    --color-tag-bg:           #eef0ff;
-    --color-tag-text:         #4361ee;
-    --color-success:          #22c55e;
-    --color-error:            #ef4444;
+    /* Radius */
+    --radius-sm: 8px;
+    --radius-md: 11px;
+    --radius-lg: 18px;
+    --radius-pill: 9999px;
+
+    /* Type */
+    --font-display: "SF Pro Display", "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-text: "SF Pro Text", "Inter", "Noto Sans KR", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    --type-hero: calc(56px * var(--font-scale, 1));
+    --type-display: calc(40px * var(--font-scale, 1));
+    --type-lead: calc(28px * var(--font-scale, 1));
+    --type-tagline: calc(21px * var(--font-scale, 1));
+    --type-body: calc(17px * var(--font-scale, 1));
+    --type-caption: calc(14px * var(--font-scale, 1));
+    --type-fine: calc(12px * var(--font-scale, 1));
+
+    /* Apple-inspired surface system */
+    --color-primary: #0066cc;
+    --color-primary-focus: #0071e3;
+    --color-primary-on-dark: #2997ff;
+    --color-canvas: #ffffff;
+    --color-canvas-parchment: #f5f5f7;
+    --color-surface-pearl: #fafafc;
+    --color-surface-tile-1: #272729;
+    --color-surface-tile-2: #2a2a2c;
+    --color-surface-tile-3: #252527;
+    --color-surface-black: #000000;
+    --color-ink: #1d1d1f;
+    --color-body: #1d1d1f;
+    --color-body-on-dark: #ffffff;
+    --color-body-muted: #cccccc;
+    --color-ink-muted-80: #333333;
+    --color-ink-muted-48: #7a7a7a;
+    --color-divider-soft: rgba(0, 0, 0, 0.04);
+    --color-hairline: #e0e0e0;
+    --product-shadow: rgba(0, 0, 0, 0.22) 3px 5px 30px 0;
+
+    /* Compatibility aliases used by existing components */
+    --color-bg: var(--color-canvas-parchment);
+    --color-header-bg: var(--color-surface-black);
+    --color-border: var(--color-hairline);
+    --color-text: var(--color-ink);
+    --color-text-muted: var(--color-ink-muted-48);
+    --color-card-bg: var(--color-canvas);
+    --color-card-border: var(--color-hairline);
+    --color-card-shadow: transparent;
+    --color-btn-bg: var(--color-surface-pearl);
+    --color-btn-border: var(--color-divider-soft);
+    --color-btn-hover: var(--color-canvas);
+    --color-btn-hover-border: var(--color-hairline);
+    --color-accent: var(--color-primary);
+    --color-accent-hover: var(--color-primary);
+    --color-input-bg: var(--color-canvas);
+    --color-input-border: rgba(0, 0, 0, 0.08);
+    --color-tag-bg: var(--color-surface-pearl);
+    --color-tag-text: var(--color-primary);
+    --color-success: var(--color-primary);
+    --color-error: #b42318;
+
+    /* Tool Card */
+    --tool-card-radius: var(--radius-lg);
+    --tool-card-pad: 24px;
+    --tool-card-gap: 20px;
+    --tool-card-w: 252px;
+    --tool-card-h: 236px;
 }
 
-/* ============================================
-   다크 모드 색상
-   ============================================ */
 [data-theme="dark"] {
-    --color-bg:               #0f1117;
-    --color-header-bg:        #1a1c27;
-    --color-border:           #2a2d3e;
-    --color-text:             #e8eaf0;
-    --color-text-muted:       #8b8fa8;
-    --color-card-bg:          #1e2030;
-    --color-card-border:      #2e3148;
-    --color-card-shadow:      rgba(0, 0, 0, 0.35);
-    --color-btn-bg:           #252840;
-    --color-btn-border:       #3a3d58;
-    --color-btn-hover:        #2f334e;
-    --color-btn-hover-border: #5a5e80;
-    --color-accent:           #6c8aff;
-    --color-accent-hover:     #8fa3ff;
-    --color-input-bg:         #1e2030;
-    --color-input-border:     #3a3d58;
-    --color-tag-bg:           #1e2540;
-    --color-tag-text:         #6c8aff;
-    --color-success:          #4ade80;
-    --color-error:            #f87171;
+    --color-bg: var(--color-surface-tile-3);
+    --color-header-bg: var(--color-surface-black);
+    --color-border: rgba(255, 255, 255, 0.16);
+    --color-text: var(--color-body-on-dark);
+    --color-text-muted: var(--color-body-muted);
+    --color-card-bg: var(--color-surface-tile-1);
+    --color-card-border: rgba(255, 255, 255, 0.14);
+    --color-btn-bg: var(--color-surface-tile-2);
+    --color-btn-border: rgba(255, 255, 255, 0.18);
+    --color-btn-hover: var(--color-surface-tile-1);
+    --color-btn-hover-border: rgba(255, 255, 255, 0.24);
+    --color-accent: var(--color-primary-on-dark);
+    --color-accent-hover: var(--color-primary-on-dark);
+    --color-input-bg: var(--color-surface-tile-1);
+    --color-input-border: rgba(255, 255, 255, 0.18);
+    --color-tag-bg: rgba(255, 255, 255, 0.08);
+    --color-tag-text: var(--color-primary-on-dark);
+    --color-error: #ffb4ab;
 }
 
-/* ============================================
-   반응형: 모바일 토큰
-   ============================================ */
-@media (max-width: 640px) {
+@media (max-width: 833px) {
     :root {
-        --header-h: 60px;
         --header-pad-x: 16px;
-        --brand-logo-h: 36px;
-        --brand-font: 20px;
+        --brand-logo-h: 22px;
+        --brand-font: 19px;
+        --tool-card-w: min(100%, 320px);
+        --tool-card-h: 224px;
+    }
+}
+
+@media (max-width: 419px) {
+    :root {
+        --space-section: 48px;
+        --type-hero: calc(28px * var(--font-scale, 1));
+        --type-display: calc(28px * var(--font-scale, 1));
+        --type-lead: calc(17px * var(--font-scale, 1));
     }
 }

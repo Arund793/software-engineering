@@ -1,11 +1,9 @@
-/* ===== 카테고리 바 ===== */
 .catbar {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 8px;
-    padding: 0 4px;
+    padding: 0;
 }
 
 .track {
@@ -13,64 +11,64 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 8px;
-    padding: 10px 0;
+    padding: 0;
 }
 
-/* ===== 개별 카테고리 버튼 ===== */
 .chip {
     display: inline-flex;
     align-items: center;
-    height: 40px;
-    padding: 0 18px;
-    border: 1.5px solid var(--color-card-border, #e5e7eb);
-    border-radius: 999px;
-    background: var(--color-card-bg, #ffffff);
-    color: var(--color-text, #111111);
-    font-size: calc(14px * var(--font-scale, 1));
+    justify-content: center;
+    min-height: 40px;
+    padding: 0 16px;
+    border: 1px solid var(--color-card-border);
+    border-radius: var(--radius-pill);
+    background: var(--color-card-bg);
+    color: var(--color-text);
+    font-size: var(--type-caption);
+    line-height: 1;
     cursor: pointer;
     user-select: none;
-    transition: background .15s ease, border-color .15s ease, color .15s ease, transform .15s ease, font-size 0.2s;
-    font-weight: 500;
+    white-space: nowrap;
+    transition: border-color 0.15s ease, transform 0.12s ease;
 }
 
 .chip:hover {
-    background: var(--color-btn-hover, #e8e8e8);
-    border-color: var(--color-btn-hover-border, #aaaaaa);
-    transform: translateY(-1px);
+    border-color: var(--color-primary);
 }
 
-/* 활성 상태 */
+.chip:active {
+    transform: scale(0.95);
+}
+
+.chip:focus-visible {
+    outline: 2px solid var(--color-primary-focus);
+    outline-offset: 2px;
+}
+
 .chip.active {
-    background: var(--color-accent, #4361ee);
-    color: #fff;
-    border-color: var(--color-accent, #4361ee);
-    font-weight: 700;
+    background: var(--color-primary);
+    color: var(--color-body-on-dark);
+    border-color: var(--color-primary);
 }
 
-.chip.active:hover {
-    background: var(--color-accent-hover, #3a54d6);
-    border-color: var(--color-accent-hover, #3a54d6);
-}
-
-/* ===== 반응형 ===== */
 @media (max-width: 640px) {
     .catbar {
         justify-content: flex-start;
         overflow-x: auto;
         margin: 0 -14px;
-        padding: 0 14px;
+        padding: 0 14px 2px;
     }
 
     .track {
         flex-wrap: nowrap;
         justify-content: flex-start;
-        padding-bottom: 12px;
+        padding-bottom: 10px;
     }
 
     .chip {
         flex: 0 0 auto;
-        height: 34px;
-        font-size: calc(13px * var(--font-scale, 1));
-        padding: 0 12px;
+        min-height: 36px;
+        padding: 0 13px;
+        font-size: var(--type-fine);
     }
 }
