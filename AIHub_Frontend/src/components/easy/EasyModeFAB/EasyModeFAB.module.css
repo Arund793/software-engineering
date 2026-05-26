@@ -1,0 +1,79 @@
+/* ===== 쉬운 화면 진입 버튼 (화면 하단 고정) ===== */
+
+.wrapper {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 8000;
+    pointer-events: none;
+}
+
+.fab {
+    pointer-events: all;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    height: 72px;           /* 더 크게 */
+    padding: 0 40px;
+    border: none;
+    border-radius: 999px;
+    background: #0066cc;
+    color: #ffffff;
+    cursor: pointer;
+    font-family: "SF Pro Text", "Inter", "Noto Sans KR", system-ui, -apple-system, sans-serif;
+    font-size: 24px;        /* 더 크게 */
+    font-weight: 700;
+    letter-spacing: 0;
+    white-space: nowrap;
+    box-shadow:
+        0 8px 30px rgba(0, 102, 204, 0.44),
+        0 2px 8px rgba(0, 0, 0, 0.14);
+    animation: pulse 3s ease-in-out infinite;
+    transition: background 0.15s ease, transform 0.12s ease;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 8px 30px rgba(0, 102, 204, 0.44), 0 2px 8px rgba(0,0,0,0.14);
+        transform: translateY(0);
+    }
+    50% {
+        box-shadow: 0 12px 44px rgba(0, 102, 204, 0.58), 0 4px 12px rgba(0,0,0,0.18);
+        transform: translateY(-5px);
+    }
+}
+
+.fab:hover {
+    background: #0071e3;
+    transform: translateY(-4px);
+    animation: none;
+    box-shadow: 0 12px 44px rgba(0, 102, 204, 0.52), 0 4px 12px rgba(0,0,0,0.16);
+}
+
+.fab:active {
+    transform: scale(0.96);
+    animation: none;
+}
+
+.fab:focus-visible {
+    outline: 3px solid #0071e3;
+    outline-offset: 3px;
+    animation: none;
+}
+
+.fabIcon {
+    font-size: 28px;
+    line-height: 1;
+}
+
+@media (max-width: 520px) {
+    .wrapper { bottom: 24px; }
+    .fab {
+        height: 62px;
+        padding: 0 28px;
+        font-size: 20px;
+        gap: 10px;
+    }
+    .fabIcon { font-size: 22px; }
+}
